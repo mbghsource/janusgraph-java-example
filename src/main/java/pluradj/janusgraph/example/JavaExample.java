@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
+import java.util.Iterator;
 
 public class JavaExample {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaExample.class);
@@ -27,6 +28,32 @@ public class JavaExample {
         LOGGER.info(saturnProps.toString());
         List<Edge> places = g.E().has("place", Geo.geoWithin(Geoshape.circle(37.97, 23.72, 50))).toList();
         LOGGER.info(places.toString());
+        LOGGER.info("=============================================");
+        LOGGER.info("dumping output of g.V()");
+        List<Vertex> vertices = g.V().toList();
+        LOGGER.info(vertices.toString());
+        for(Vertex v: vertices){
+          LOGGER.info("-----------");
+          LOGGER.info(v.toString());
+          LOGGER.info(v.label());
+          Iterator vp = v.properties();
+          while(vp.hasNext()){
+             LOGGER.info(vp.next().toString());
+          }
+        }
+        LOGGER.info("=============================================");
+        LOGGER.info("dumping output of g.E()");
+        List<Edge> edges = g.E().toList();
+        LOGGER.info(edges.toString());
+        for(Edge e: edges){
+          LOGGER.info("-----------");
+          LOGGER.info(e.toString());
+          LOGGER.info(e.label());
+          Iterator ep = e.properties();
+          while(ep.hasNext()){
+             LOGGER.info(ep.next().toString());
+          }
+        }
         System.exit(0);
     }
 }
