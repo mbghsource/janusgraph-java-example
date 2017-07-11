@@ -17,6 +17,12 @@ import java.util.Iterator;
 public class JavaExample {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaExample.class);
 
+    /* public static void main(String[] args) {
+       JavaExample self = new JavaExample()
+       self.runMe(args);
+    }
+    public void runMe(String[] args) { */
+
     public static void main(String[] args) {
         JanusGraph graph = JanusGraphFactory.open("conf/janusgraph-berkeleyje-lucene.properties");
         GraphTraversalSource g = graph.traversal();
@@ -29,6 +35,9 @@ public class JavaExample {
         List<Edge> places = g.E().has("place", Geo.geoWithin(Geoshape.circle(37.97, 23.72, 50))).toList();
         LOGGER.info(places.toString());
         LOGGER.info("=============================================");
+
+        LOGGER.info("num vertices " + g.V().count().next());
+        LOGGER.info("num edges " + g.E().count().next());
         LOGGER.info("dumping output of g.V()");
         List<Vertex> vertices = g.V().toList();
         LOGGER.info(vertices.toString());
