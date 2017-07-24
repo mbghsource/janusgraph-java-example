@@ -17,12 +17,6 @@ import java.util.Iterator;
 public class JavaExample {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaExample.class);
 
-    /* public static void main(String[] args) {
-       JavaExample self = new JavaExample()
-       self.runMe(args);
-    }
-    public void runMe(String[] args) { */
-
     public static void main(String[] args) {
         JanusGraph graph = JanusGraphFactory.open("conf/janusgraph-berkeleyje-lucene.properties");
         GraphTraversalSource g = graph.traversal();
